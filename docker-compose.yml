@@ -8,6 +8,7 @@ services:
     image: bitnami/moodle:latest
     container_name: moodle
     environment:
+      - BITNAMI_DEBUG=true
       - MOODLE_DATABASE_HOST=mariadb
       - MOODLE_DATABASE_PORT_NUMBER=3306
       - MOODLE_DATABASE_USER=moodle
