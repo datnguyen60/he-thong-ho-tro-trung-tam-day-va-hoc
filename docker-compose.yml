@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  moodle:
+    volumes: 
+      - ./moodle:/bitnami/moodle
+      - ./moodle_data:/bitnami/moodledata
+    image: bitnami/moodle:latest
+    container_name: moodle
+    environment:
+      - MOODLE_DATABASE_HOST=mariadb
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=moodle
+      - MOODLE_DATABASE_NAME=moodle
+      - MOODLE_DATABASE_PASSWORD=moodlepassword
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    depends_on:
+      - mariadb
+
+  mariadb:
+    volumes: 
+      - ./mariadb_data:/bitnami/mariadb
+    image: bitnami/mariadb:latest
+    container_name: mariadb
+    environment:
+      - MARIADB_USER=moodle
+      - MARIADB_DATABASE=moodle
+      - MARIADB_PASSWORD=moodlepassword
+      - MARIADB_ROOT_PASSWORD=rootpassword
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
