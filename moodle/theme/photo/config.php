@@ -2,7 +2,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $THEME->name = 'photo';
-$THEME->sheets = [];
+$THEME->sheets = ['custom'];
 $THEME->editor_sheets = [];
 $THEME->parents = ['boost'];
 $THEME->enable_dock = false;

@@ -1,0 +1,29 @@
+/* Thay đổi màu nền cho toàn bộ event-item */
+li[data-region="event-item"] {
+    background-color: #f0f8ff; /* Màu nền nhạt */
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+/* Chỉnh style cho vòng tròn event */
+li[data-region="event-item"] .calendar-circle {
+    width: 12px;
+    height: 12px;
+    background-color: #ff6600; /* Màu cam */
+    border-radius: 50%;
+    display: none !important; 
+    margin-right: 10px;
+}
+
+/* Đổi màu chữ và hover cho tiêu đề */
+li[data-region="event-item"] .eventname {
+    font-weight: bold;
+    color: #333;
+    text-wrap-mode: wrap;
+}
+
+.eventname:hover {
+    text-decoration: underline;
+    color: #ff6600 !important;
+}
