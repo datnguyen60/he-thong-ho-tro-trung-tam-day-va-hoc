@@ -21,6 +21,7 @@
  * @copyright  2004 Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+require_once($CFG->dirroot . '/local/dlog/lib.php');
 class block_calendar_month extends block_base {
 
     /**
@@ -70,6 +71,9 @@ class block_calendar_month extends block_base {
         $this->content->text .= $renderer->complete_layout();
 
         $this->page->requires->js_call_amd('core_calendar/popover');
+
+        dlog($template);
+        dlog($data);
 
         return $this->content;
     }

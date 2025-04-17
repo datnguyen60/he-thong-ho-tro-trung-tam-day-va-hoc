@@ -1,8 +1,5 @@
-/* [data-event-eventtype="course_schedule"] .calendar-circle {
-    background-color: #ff8800 !important;
+.pagelayout-standard #page.drawers .main-inner,
+body.limitedwidth #page.drawers .main-inner {
+    max-width: none !important;
+    width: 100% !important; /* hoặc 100%, tùy bạn */
 }
-
-[data-event-eventtype="course_schedule"] .eventname {
-    color: #d10000 !important;
-    font-weight: bold;
-}  */

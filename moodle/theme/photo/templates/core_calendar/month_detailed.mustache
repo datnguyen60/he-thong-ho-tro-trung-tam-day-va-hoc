@@ -98,6 +98,7 @@
                                                 data-event-eventtype="{{eventtype}}"
                                                 data-event-folded="false"
                                                 data-eventtype-{{normalisedeventtype}}="1"
+                                                data-event-descriptionformat="{{descriptionformat}}"
                                                 {{#draggable}}
                                                     draggable="true"
                                                     data-drag-type="move"
@@ -119,7 +120,7 @@
                                                     <span class="calendar-circle calendar_event_{{normalisedeventtype}}">
                                                         &nbsp;
                                                     </span>
-                                                    <span class="eventname">{{{eventtype}}}{{{name}}}</span>
+                                                    <span class="eventname">{{{name}}}</span>
                                                 </a>
                                             </li>
                                         {{/underway}}
@@ -181,7 +182,12 @@ require([
 });
 {{/js}}
 <script>
-    document.querySelectorAll('li[data-event-eventtype="course_schedule"]').forEach(el => {
-        el.style.border = '1px solid black';
+    document.querySelectorAll('li[data-event-eventtype="course"]').forEach(el => {
+        const format = el.getAttribute('data-event-descriptionformat');
+        if (format === '1') {
+            el.style.backgroundColor = '#f6a312'; // upcomming
+        } else if (format === '2') {
+            el.style.backgroundColor = '#dfe2e6'; // cancel
+        }
     });
 </script>

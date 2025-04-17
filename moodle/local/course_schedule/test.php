@@ -9,7 +9,7 @@ global $DB;
 // Ghi log
 dlog("Bắt đầu tạo event");
 
-$COURSE_ID = 6;
+$COURSE_ID = 2;
 
 if (!$DB->record_exists('course', ['id' => $COURSE_ID])) {
     throw new moodle_exception("Course không tồn tại");
@@ -40,7 +40,6 @@ try{
 
     $eventid = $DB->insert_record('event', $event);
     dlog("✅ Đã insert thành công, event ID = $eventid");
-
 
     // $newevent = calendar_event::create($event);
     // dlog("Đã tạo event với ID: {$newevent->id}");
