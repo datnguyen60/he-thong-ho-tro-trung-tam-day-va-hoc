@@ -5,7 +5,7 @@ require_once($CFG->dirroot . '/calendar/lib.php');  // Bao gồm thư viện cal
 require_once(__DIR__ . '/../../config.php');
 
 function local_course_schedule_extend_navigation_course(navigation_node $navigation, stdClass $course, context_course $context) {
-    if (has_capability('moodle/course:view', $context)) {
+    // if (has_capability('moodle/course:view', $context)) {
 
         $url = new moodle_url('/local/course_schedule/index.php', ['id' => $course->id]);
         $navigation->add(
@@ -16,5 +16,5 @@ function local_course_schedule_extend_navigation_course(navigation_node $navigat
             'course_schedule',
             new pix_icon('i/calendar', '')
         );
-    }
+    // }
 }
