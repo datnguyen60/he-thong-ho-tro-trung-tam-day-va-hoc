@@ -1,2 +1,5 @@
 moodle_data/
 mariadb_data/
+
+localbackup/
+*.log
