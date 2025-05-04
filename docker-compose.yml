@@ -14,6 +14,10 @@ services:
       - MOODLE_DATABASE_USER=moodle
       - MOODLE_DATABASE_NAME=moodle
       - MOODLE_DATABASE_PASSWORD=moodlepassword
+      - MOODLE_USERNAME=admin
+      - MOODLE_PASSWORD=admin
+      - MOODLE_EMAIL=maiphuongbrt9a1@gmail.com
+
     ports:
       - "8080:8080"
       - "8443:8443"

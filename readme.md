@@ -26,7 +26,7 @@ docker-compose logs -f
 ## 5. Import Database (If Not Available)
 Wait until MariaDB is fully initialized, then run:
 ```sh
-docker exec -i mariadb /opt/bitnami/mariadb/bin/mariadb -u moodle -p'moodlepassword' moodle < ./moodle_backup.sql
+docker exec -i mariadb /opt/bitnami/mariadb/bin/mariadb -u moodle -pmoodlepassword moodle < ./moodle_backup.sql
 ```
 
 ## 6. Restart Docker Compose
