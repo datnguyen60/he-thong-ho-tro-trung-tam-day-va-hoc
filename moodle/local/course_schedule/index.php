@@ -1,12 +1,14 @@
 <?php
 require('../../config.php');
+require_once($CFG->dirroot . '/local/dlog/lib.php');
+
 try {
-    $courseid = required_param('id', PARAM_INT);
-    $course = get_course($courseid);
+    $id = required_param('id', PARAM_INT);
+    $course = get_course($id);
     require_login($course);
 
-    $context = context_course::instance($courseid);
-    $PAGE->set_url(new moodle_url('/mod/course_schedule/index.php', ['courseid' => $courseid]));
+    $context = context_course::instance($id);
+    $PAGE->set_url(new moodle_url('/local/course_schedule/index.php', ['id' => $id]));
     $PAGE->set_context($context);
     $PAGE->set_title('Thời khóa biểu');
     $PAGE->set_heading(format_string($course->fullname));
@@ -18,68 +20,58 @@ try {
 
     // Nút tạo thời khóa biểu
     if ($iscreator) {
-        $url = new moodle_url('/mod/course_schedule/schedule_form.php', ['courseid' => $courseid]);
-        echo $OUTPUT->single_button($url, 'Tạo thời khóa biểu mới', 'get');
+        $url = new moodle_url('/local/course_schedule/schedule_form.php', ['id' => $id]);
+        echo $OUTPUT->single_button($url, 'Tạo buổi học mới', 'get', ['class' => 'mb-3']);
     }
 
     // Lấy danh sách các event là thời khóa biểu
-    $events = $DB->get_records('event', [
-        'courseid' => $courseid,
-        'eventtype' => 'course_schedule'
-    ], 'timestart ASC');
+    $schedules = $DB->get_records('course_schedule', null, 'classdate ASC, classbegintime ASC');
 
-    if (!$events) {
-        echo $OUTPUT->notification('Chưa có buổi học nào được tạo.', 'info');
-    } else {
-        echo html_writer::start_tag('div', ['class' => 'schedule-list']);
-        echo html_writer::tag('h3', 'Danh sách các buổi học');
+if (!$schedules) {
+    echo $OUTPUT->notification('Chưa có buổi học nào được tạo.', 'info');
+} else {
+    echo html_writer::start_tag('div', ['class' => 'schedule-list']);
+    echo html_writer::tag('h3', 'Danh sách thời khóa biểu');
 
-        foreach ($events as $event) {
-            $status = 'upcoming';
-            $color = '#ccc';
-
-            // Check attendance_records
-            $record = $DB->get_record('attendance_records', [
-                'eventid' => $event->id,
-                'userid' => $USER->id
-            ]);
-
-            if ($record) {
-                if ($record->status === 'taught') {
-                    $status = 'taught';
-                    $color = '#28a745';
-                } else if ($record->status === 'absent') {
-                    $status = 'absent';
-                    $color = '#dc3545';
-                }
-            } else if ($event->timestart > time()) {
-                $status = 'upcoming';
-                $color = '#ccc';
-            } else {
-                $status = 'past';
-                $color = '#ffc107';
-            }
-
-            // Hiển thị khối buổi học
-            echo html_writer::start_tag('div', ['style' => "background-color:$color; padding:10px; margin:10px; border-radius:6px"]);
-            echo html_writer::link(
-                new moodle_url('/mod/course_schedule/view.php', ['id' => $event->id]),
-                format_string($event->name) . ' - ' . userdate($event->timestart)
-            );
-            echo html_writer::end_tag('div');
+    $table = new html_table();
+    $table->head = [
+        'STT',
+        'Ngày học',
+        'Giờ bắt đầu',
+        'Giờ kết thúc',
+        'Trạng thái'
+    ];
+    $table->align = ['center', 'center', 'center', 'center', 'center'];
+    $i = 1;
+    foreach ($schedules as $schedule) {
+        // Trạng thái
+        $timestart = strtotime($schedule->classdate . ' ' . $schedule->classbegintime);
+        if ($timestart > time()) {
+            $status = '<span style="color:#007bff;font-weight:bold;"><i class="fa fa-clock-o"></i> Chưa diễn ra</span>';
+        } else {
+            $status = '<span style="color:#ffc107;font-weight:bold;"><i class="fa fa-check-circle"></i> Đã diễn ra</span>';
         }
-
-        echo html_writer::end_tag('div');
+        $table->data[] = [
+            $i++,
+            $schedule->classdate,
+            $schedule->classbegintime,
+            $schedule->classendtime,
+            $status
+        ];
     }
+    echo html_writer::table($table);
+    echo html_writer::end_tag('div');
+}
 
+    // Chú thích
     echo html_writer::tag('hr', '');
-    echo html_writer::tag('p', '<strong>Chú thích:</strong> 
-        <span style="color:#28a745">■ Đã dạy</span> - 
-        <span style="color:#dc3545">■ Nghỉ</span> - 
-        <span style="color:#ccc">■ Chưa diễn ra</span> - 
-        <span style="color:#ffc107">■ Diễn ra nhưng chưa ghi nhận');
+    echo html_writer::div(
+        '<strong>Chú thích:</strong> 
+        <span style="color:#007bff">■ Chưa diễn ra</span> - 
+        <span style="color:#ffc107">■ Đã diễn ra</span>',
+        'mt-3'
+    );
 
-    // Footer
     echo $OUTPUT->footer();
 } catch (Exception $e) {
     echo '<pre>';

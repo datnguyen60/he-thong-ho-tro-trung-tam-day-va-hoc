@@ -2,3 +2,4 @@ moodle_data/
 mariadb_data/
 
 localbackup/
+moodle/node_modules/
