@@ -11,22 +11,34 @@ require_capability('moodle/course:update', $context);
 class schedule_form extends moodleform {
     function definition() {
         $mform = $this->_form;
+        global $DB, $courseid;
+
+        // Lấy danh sách section của course
+        $sections = $DB->get_records('course_sections', ['course' => $courseid], 'section ASC');
+        $section_options = [];
+        foreach ($sections as $section) {
+            $label = $section->name ? format_string($section->name) : 'Section ' . $section->section;
+            $section_options[$section->id] = $label;
+        }
+
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
         $mform->setDefault('id', $this->_customdata['id']);
 
-        $mform->addElement('text', 'name', 'Tên buổi học');
-        $mform->setType('name', PARAM_TEXT);
-        $mform->addRule('name', 'Bắt buộc nhập', 'required');
+        $mform->addElement('select', 'sectionid', 'Chọn phần học (section)', $section_options);
+        $mform->addRule('sectionid', 'Bắt buộc chọn', 'required');
+        $mform->setDefault('sectionid', array_key_first($section_options));
+
 
         $mform->addElement('date_selector', 'classdate', 'Ngày học');
         $mform->addRule('classdate', 'Bắt buộc nhập', 'required');
 
         $mform->addElement('date_time_selector', 'classbegintime', 'Giờ bắt đầu');
         $mform->addRule('classbegintime', 'Bắt buộc nhập', 'required');
-
+        $mform->setDefault('classbegintime', time());
         $mform->addElement('date_time_selector', 'classendtime', 'Giờ kết thúc');
         $mform->addRule('classendtime', 'Bắt buộc nhập', 'required');
+        $mform->setDefault('classendtime', time() + 3600); 
 
         $mform->addElement('textarea', 'description', 'Mô tả', 'wrap="virtual" rows="3" cols="40"');
         $mform->setType('description', PARAM_TEXT);
@@ -68,7 +80,7 @@ if ($mform->is_cancelled()) {
 
     for ($i = 0; $i < $repeat_count; $i++) {
         $record = new stdClass();
-        $record->sectionid = 0; // Hoặc lấy từ form nếu có
+        $record->sectionid = $data->sectionid;
         $record->classdate = userdate($base_date, '%Y-%m-%d');
         $record->classbegintime = $base_begintime;
         $record->classendtime = $base_endtime;
@@ -83,10 +95,16 @@ if ($mform->is_cancelled()) {
         // Lặp lại ngày nếu cần
         if ($repeat_type == 'day') {
             $base_date = strtotime("+{$repeat_every} days", $base_date);
+            $base_begintime = strtotime("+{$repeat_every} days", $base_begintime);
+            $base_endtime = strtotime("+{$repeat_every} days", $base_endtime);
         } else if ($repeat_type == 'week') {
             $base_date = strtotime("+{$repeat_every} weeks", $base_date);
+            $base_begintime = strtotime("+{$repeat_every} weeks", $base_begintime);
+            $base_endtime = strtotime("+{$repeat_every} weeks", $base_endtime);
         } else if ($repeat_type == 'month') {
             $base_date = strtotime("+{$repeat_every} months", $base_date);
+            $base_begintime = strtotime("+{$repeat_every} months", $base_begintime);
+            $base_endtime = strtotime("+{$repeat_every} months", $base_endtime);
         }
     }
 
