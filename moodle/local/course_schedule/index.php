@@ -27,7 +27,12 @@ try {
     }
 
     // Lấy danh sách các event là thời khóa biểu
-    $schedules = $DB->get_records('course_schedule', null, 'classdate ASC, classbegintime ASC');
+    $sql = "SELECT cs.*
+            FROM {course_schedule} cs
+            JOIN {course_sections} s ON cs.sectionid = s.id
+            WHERE s.course = :courseid
+        ORDER BY cs.classdate ASC, cs.classbegintime ASC";
+    $schedules = $DB->get_records_sql($sql, ['courseid' => $id]);
 
     if (!$schedules) {
         echo $OUTPUT->notification('Chưa có buổi học nào được tạo.', 'info');
