@@ -1,2 +1,4 @@
 moodle_data/
 mariadb_data/
+node_modules/
+.vscode/
