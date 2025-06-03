@@ -71,6 +71,7 @@ class block_calendar_month extends block_base {
 
         $this->page->requires->js_call_amd('core_calendar/popover');
 
+
         return $this->content;
     }
 }

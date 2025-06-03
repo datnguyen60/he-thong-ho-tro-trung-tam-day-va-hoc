@@ -1,11 +1,15 @@
 <?php
-// defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot . '/local/dlog/lib.php');
-require_once($CFG->dirroot . '/calendar/lib.php');  // Bao gồm thư viện calendar
-require_once(__DIR__ . '/../../config.php');
 
-dlog("load");
-
-function local_course_schedule_before_footer(){
-
+function local_course_schedule_extend_navigation_course($navigation, $course, $context) {
+    if (has_capability('moodle/course:update', $context)) {
+        $url = new moodle_url('/local/course_schedule/index.php', ['id' => $course->id]);
+        $navigation->add(
+            get_string('manageschedule', 'local_course_schedule'),
+            $url,
+            navigation_node::TYPE_SETTING,
+            null,
+            null,
+            new pix_icon('i/calendar', '')
+        );
+    }
 }
