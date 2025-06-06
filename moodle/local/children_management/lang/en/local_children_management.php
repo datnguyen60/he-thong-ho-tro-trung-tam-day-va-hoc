@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 // en/local_parentportal.php
-$string['pluginname'] = 'local_children_management';
+$string['pluginname'] = 'children_management';
 
 $string['children_management_title'] = 'My Children';
 $string['children_management_heading'] = 'List of My Children';

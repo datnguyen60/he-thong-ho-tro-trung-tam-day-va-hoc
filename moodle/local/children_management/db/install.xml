@@ -15,9 +15,11 @@
             <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             <KEY NAME="parent_fk" TYPE="foreign" FIELDS="parentid" REFTABLE="user" REFFIELDS="id"/>
             <KEY NAME="child_fk" TYPE="foreign" FIELDS="studentid" REFTABLE="user" REFFIELDS="id"/>
+        </KEYS>
+        <indexes>
             <index name="parentid_idx" unique="false" columns="parentid"/>
             <index name="studentid_idx" unique="false" columns="studentid"/>
-        </KEYS>
+        </indexes>
     </TABLE>
   </TABLES>
 </XMLDB>
