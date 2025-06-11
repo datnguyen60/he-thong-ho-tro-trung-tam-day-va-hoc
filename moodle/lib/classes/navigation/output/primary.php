@@ -111,7 +111,10 @@ class primary implements renderable, templatable {
      * @return array
      */
     protected function get_custom_menu(renderer_base $output): array {
-        global $CFG;
+        global $CFG, $DB, $USER;
+
+        $CFG->custommenuitems = "Children Management | /local/children_management/index.php";
+        $coursecontext = \context_course::instance(SITEID);
 
         // Early return if a custom menu does not exists.
         if (empty($CFG->custommenuitems)) {

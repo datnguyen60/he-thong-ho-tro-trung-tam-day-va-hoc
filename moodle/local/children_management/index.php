@@ -61,7 +61,7 @@ try {
         foreach ($students as $student) {
             $profileurl = new moodle_url('/user/profile.php', ['id' => $student->id]);
             // You might want to add a link to student's course overview etc.
-            $actions = html_writer::link($profileurl, get_string('viewprofile', 'local_children_management'));
+            $actions = html_writer::link($profileurl, get_string('view_profile', 'local_children_management'));
             // Add more links here, e.g., link to student's courses (more complex)
 
             $table->data[] = [
@@ -153,7 +153,6 @@ try {
 
     echo $OUTPUT->footer();
 } catch (Exception $e) {
-    // Log the error using dlog.
-    dlog('local_children_management', 'error', 'Error in index.php: ' . $e->getMessage());
-    dlog('local_children_management', 'error', 'Error in index.php: ' . $e->getTrace());
+    print_r($e->getMessage());
+    print_r($e->getTrace());
 }

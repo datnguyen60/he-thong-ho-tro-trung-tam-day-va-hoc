@@ -22,6 +22,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+/**
+ * Extend the user navigation to add a link to the children management page.
+ * @param mixed $navigation The user navigation object to extend.
+ * @param mixed $user The user object for the current user.
+ * @param mixed $context The context object for the current user.
+ * @return void
+ */
 function local_children_management_extend_navigation_user($navigation, $user, $context) {
     if (has_capability('moodle/user:viewdetails', $context)) {
         $url = new moodle_url('/local/children_management/index.php', ['id' => $user->id]);
