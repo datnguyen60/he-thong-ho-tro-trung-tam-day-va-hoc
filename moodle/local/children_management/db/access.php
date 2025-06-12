@@ -19,7 +19,7 @@
  *
  * Documentation: {@link https://moodledev.io/docs/apis/subsystems/access}
  *
- * @package    local_course_schedule
+ * @package    local_children_management
  * @category   access
  * @copyright  2025 Võ Mai Phương <vomaiphuonghhvt@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,6 +27,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = [
-    
-];
+$capabilities = array(
+    'local/children_management:view' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => array(
+            'parent' => CAP_ALLOW,
+        ),
+        'clonepermissionsfrom' => 'moodle/site:viewparticipants',
+    ),
+);

@@ -153,6 +153,5 @@ try {
 
     echo $OUTPUT->footer();
 } catch (Exception $e) {
-    print_r($e->getMessage());
-    print_r($e->getTrace());
+    dlog($e->getTrace());
 }
