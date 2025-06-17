@@ -7,18 +7,18 @@
         <FIELDS>
             <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
             <FIELD NAME="parentid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
-            <FIELD NAME="studentid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            <FIELD NAME="childrenid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
             <FIELD NAME="createtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
             <FIELD NAME="lastmodifytime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
         </FIELDS>
         <KEYS>
             <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             <KEY NAME="parent_fk" TYPE="foreign" FIELDS="parentid" REFTABLE="user" REFFIELDS="id"/>
-            <KEY NAME="child_fk" TYPE="foreign" FIELDS="studentid" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="child_fk" TYPE="foreign" FIELDS="childrenid" REFTABLE="user" REFFIELDS="id"/>
         </KEYS>
         <INDEXES>
             <INDEX NAME="parentid_idx" UNIQUE="false" FIELDS="parentid"/>
-            <INDEX NAME="studentid_idx" UNIQUE="false" FIELDS="studentid"/>
+            <INDEX NAME="childrenid_idx" UNIQUE="false" FIELDS="childrenid"/>
         </INDEXES>
     </TABLE>
   </TABLES>

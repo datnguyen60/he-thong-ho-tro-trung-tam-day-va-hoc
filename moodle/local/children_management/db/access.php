@@ -31,9 +31,6 @@ $capabilities = array(
     'local/children_management:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array(
-            'parent' => CAP_ALLOW,
-        ),
         'clonepermissionsfrom' => 'moodle/site:viewparticipants',
     ),
 );

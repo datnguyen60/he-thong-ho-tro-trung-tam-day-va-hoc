@@ -26,16 +26,19 @@
 defined('MOODLE_INTERNAL') || die();
 
 // en/local_parentportal.php
-$string['pluginname'] = 'children_management';
+$string['pluginname'] = 'Children Management';
 $string['children_management'] = 'Children Management';
 $string['children_management_title'] = 'My Children';
 $string['children_management_heading'] = 'List of My Children';
 $string['children_list'] = 'Your Children';
 $string['no_children_found'] = 'No children linked to your account.';
 $string['view_profile'] = 'View Profile';
-$string['id'] = 'ID';
+$string['studentid'] = 'Student ID';
 $string['fullname'] = 'Full Name';
 $string['email'] = 'Email';
+$string['phone1'] = 'Phone number';
+$string['registed_course_number'] = 'Registed course number';
+$string['finished_course_number'] = 'Finished course number';
 $string['actions'] = 'Actions';
 $string['add_child'] = 'Add Child';
 $string['edit_child'] = 'Edit Child';
@@ -58,3 +61,4 @@ $string['view_child_events'] = 'View Child Events';
 $string['view_child_projects'] = 'View Child Projects';
 $string['view_child_resources'] = 'View Child Resources';
 $string['view_child_reports'] = 'View Child Reports';
+$string['children_management:view'] = 'children_management:view';

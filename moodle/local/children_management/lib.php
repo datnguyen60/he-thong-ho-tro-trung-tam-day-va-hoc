@@ -30,7 +30,7 @@
  * @return void
  */
 function local_children_management_extend_navigation_user($navigation, $user, $context) {
-    if (has_capability('moodle/user:viewdetails', $context)) {
+    if (has_capability('local/children_management:view', $context)) {
         $url = new moodle_url('/local/children_management/index.php', ['id' => $user->id]);
         $navigation->add(
             get_string('children_management_title', 'local_children_management'),

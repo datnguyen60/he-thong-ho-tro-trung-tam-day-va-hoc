@@ -113,17 +113,152 @@ class primary implements renderable, templatable {
     protected function get_custom_menu(renderer_base $output): array {
         global $CFG, $DB, $USER;
 
-        $systemcontext = \context_system::instance();
-        
         if(isloggedin()) {
-            if(has_capability('local/children_management:view', $systemcontext)) {
+            $systemcontext = \context_system::instance();
+            $usercontext = \context_user::instance($USER->id);
+            
+            /* 
+                check current user is admin or not
+                this is most quickly way to check if the current user is admin or not
+            */ 
+
+            $isadmin = is_siteadmin();
+
+            /* 
+                check if the user has the capability 'local/children_management:view' and not an admin 
+                display the custom menu item for children management
+            */
+
+            if(has_capability('local/children_management:view', $systemcontext, $USER) 
+                && !$isadmin
+            ) {
                 $stringlang1 = get_string('children_management', 'local_children_management');
                 $stringURL1 = $CFG->wwwroot . '/local/children_management/index.php';
-                $CFG->custommenuitems = "$stringlang1 | $stringURL1";
+                $CFG->custommenuitems .= "$stringlang1 | $stringURL1";
             }
+            
+
+            /*
+                Debugging for parent account. This parent account is Trinh Dinh Dung and when i logged in as this parent account,
+                i dont see the custom menu items - the children management menu item.
+                This is because the parent account does not have the capability 'local/children_management:view'.
+                So, i will add a debug code to show the current course context and the roles and capabilities of the current user.
+                This will help me to understand why the custom menu items are not showing up for this parent account.
+                
+                when i check variable systemcontext, i see that the context level is 10 (system context) and the instance id is 1.
+                This means that the current user is in the system context and this account haven't capability 'local/children_management:view'.
+            */
+
+            // else {
+            //     echo '<pre>';
+            //     echo '<h2>Debugging Current Course Context:</h2>';
+            //     var_dump($systemcontext);
+            //     var_dump($usercontext);
+            //     echo '</pre>';
+
+            //     echo '<pre>'; // Bắt đầu thẻ <pre> để định dạng output
+
+            //     global $USER, $DB; // Đảm bảo $USER và $DB có sẵn
+
+            //     // --- PHẦN 1: HIỂN THỊ CÁC VAI TRÒ ĐƯỢC GÁN CHO NGƯỜI DÙNG HIỆN TẠI ---
+            //     echo '<h2>1. Current User Roles:</h2>';
+
+            //     // Lấy tất cả các vai trò được gán cho người dùng hiện tại ở tất cả các ngữ cảnh
+            //     // Moodle có hàm get_user_roles_in_context() hoặc get_user_roles()
+            //     // Tuy nhiên, để debug nhanh, việc truy vấn trực tiếp mdl_role_assignments cũng hữu ích.
+
+            //     $roles_assigned = $DB->get_records_sql("
+            //         SELECT
+            //             ra.id AS assignment_id,
+            //             r.name AS role_name,
+            //             r.archetype,
+            //             c.contextlevel,
+            //             c.instanceid,
+            //             c.id AS context_id,
+            //             CASE
+            //                 WHEN c.contextlevel = 10 THEN 'System'
+            //                 WHEN c.contextlevel = 20 THEN (SELECT name FROM {course_categories} WHERE id = c.instanceid)
+            //                 WHEN c.contextlevel = 30 THEN (SELECT fullname FROM {course} WHERE id = c.instanceid)
+            //                 WHEN c.contextlevel = 40 THEN (SELECT CONCAT(firstname, ' ', lastname) FROM {user} WHERE id = c.instanceid)
+            //                 ELSE 'Other Context'
+            //             END AS context_description
+            //         FROM
+            //             {role_assignments} ra
+            //         JOIN
+            //             {role} r ON ra.roleid = r.id
+            //         JOIN
+            //             {context} c ON ra.contextid = c.id
+            //         WHERE
+            //             ra.userid = :userid
+            //         ORDER BY c.contextlevel, r.name
+            //     ", ['userid' => $USER->id]);
+
+            //     if ($roles_assigned) {
+            //         echo "<ul>";
+            //         foreach ($roles_assigned as $assignment) {
+            //             echo "<li><strong>Role:</strong> {$assignment->role_name} ";
+            //             echo "(Archetype: {$assignment->archetype}) ";
+            //             echo "in <strong>Context:</strong> {$assignment->context_description} ";
+            //             echo "(Context ID: {$assignment->context_id}, Level: {$assignment->contextlevel}, Instance ID: {$assignment->instanceid})</li>";
+            //         }
+            //         echo "</ul>";
+            //     } else {
+            //         echo "<p>No roles assigned to the current user.</p>";
+            //     }
+
+            //     // --- PHẦN 2: HIỂN THỊ CÁC CAPABILITY CỦA NGƯỜI DÙNG HIỆN TẠI TRONG NGỮ CẢNH CỤ THỂ ---
+            //     // Thường thì bạn sẽ kiểm tra trong CONTEXT_SYSTEM hoặc CONTEXT_COURSE
+            //     echo '<h2>2. Capabilities of Current User in System Context:</h2>';
+
+            //     // Lấy ngữ cảnh hệ thống
+            //     $systemcontext = \context_system::instance();
+
+            //     // Lấy tất cả các capability đã được Moodle định nghĩa
+            //     $allcapabilities = $DB->get_records('capabilities', null, 'name ASC', 'name');
+
+            //     if ($allcapabilities) {
+            //         echo "<ul>";
+            //         foreach ($allcapabilities as $cap) {
+            //             $capabilityname = $cap->name;
+            //             // Kiểm tra xem người dùng có capability này trong ngữ cảnh hệ thống hay không
+            //             $hascap = has_capability($capabilityname, $systemcontext, $USER);
+            //             if ($hascap) {
+            //                 echo "<li><strong style='color: green;'>&#10004; {$capabilityname}</strong></li>"; // Dấu tích xanh nếu có
+            //             } else {
+            //                 // echo "<li><span style='color: red;'>&#10006; {$capabilityname}</span></li>"; // Dấu X đỏ nếu không có
+            //             }
+            //         }
+            //         echo "</ul>";
+            //     } else {
+            //         echo "<p>No capabilities found in Moodle.</p>";
+            //     }
+
+
+            //     // --- PHẦN 3: HIỂN THỊ CÁC CAPABILITY CỦA NGƯỜI DÙNG HIỆN TẠI TRONG NGỮ CẢNH NGƯỜI DÙNG (USER CONTEXT) ---
+            //     // Rất quan trọng nếu bạn đang debug vai trò Parent/Child
+            //     echo '<h2>3. Capabilities of Current User in THEIR OWN User Context:</h2>';
+
+            //     $usercontext = \context_user::instance($USER->id);
+
+            //     if ($allcapabilities) { // Dùng lại danh sách capabilities đã lấy
+            //         echo "<ul>";
+            //         foreach ($allcapabilities as $cap) {
+            //             $capabilityname = $cap->name;
+            //             $hascap = has_capability($capabilityname, $usercontext, $USER);
+            //             if ($hascap) {
+            //                 echo "<li><strong style='color: green;'>&#10004; {$capabilityname}</strong></li>";
+            //             } else {
+            //                 // echo "<li><span style='color: red;'>&#10006; {$capabilityname}</span></li>";
+            //             }
+            //         }
+            //         echo "</ul>";
+            //     }
+
+            //     echo '</pre>'; // Kết thúc thẻ <pre>
+            // }
         }
-
-
+        
+        
         // Early return if a custom menu does not exists.
         if (empty($CFG->custommenuitems)) {
             return [];

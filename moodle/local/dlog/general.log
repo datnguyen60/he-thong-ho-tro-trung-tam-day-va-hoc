@@ -83,3 +83,1527 @@
 [2025-06-10 10:16:39] local_children_management
 [2025-06-10 10:16:41] local_children_management
 [2025-06-10 10:16:41] local_children_management
+[2025-06-12 08:56:58] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\classes\param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => 1
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 30
+            [function] => required_param
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => int
+                )
+
+        )
+
+)
+
+[2025-06-12 08:56:59] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\classes\param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => 1
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 30
+            [function] => required_param
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => int
+                )
+
+        )
+
+)
+
+[2025-06-12 10:34:45] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\classes\param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => 1
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 30
+            [function] => required_param
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => int
+                )
+
+        )
+
+)
+
+[2025-06-12 10:34:46] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\classes\param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => 1
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => id
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 30
+            [function] => required_param
+            [args] => Array
+                (
+                    [0] => id
+                    [1] => int
+                )
+
+        )
+
+)
+
+[2025-06-16 16:29:59] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid, children.parentid, user.firstname, user.lastname, user.email, user.phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:30:38] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid, children.parentid, user.firstname, user.lastname, user.email, user.phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:30:57] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid, children.parentid, user.firstname, user.lastname, user.email, user.phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:34:52] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid, children.parentid, user.firstname, user.lastname, user.email, user.phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:36:46] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid, children.parentid, user.firstname, user.lastname, user.email, user.phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:37:36] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid, children.parentid, user.firstname, user.lastname, user.email, user.phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:46:31] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:53:42] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:55:48] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1
+            FROM mdl_children_and_parent_information children
+            JOIN user on children.childrenid = user.id
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 16:57:57] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:00:52] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:01:11] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:03:08] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:05:03] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:05:28] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:05:47] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 17:06:01] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 18:15:15] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 20:27:35] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:28:15] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:30:04] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:30:59] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:31:11] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 3
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:39:19] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 44
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT *
+            FROM mdl_mdl_children_and_parent_information children
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:42:20] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 58
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 20:48:10] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_mdl_children_and_parent_information children
+            JOIN mdl_mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:48:55] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_mdl_children_and_parent_information children
+            JOIN mdl_mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:49:46] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:54:17] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\moodle_read_slave_trait.php
+            [line] => 293
+            [function] => query_end
+            [class] => moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [1] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\lib\dml\mysqli_native_moodle_database.php
+            [line] => 1364
+            [function] => query_end
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => 
+                )
+
+        )
+
+    [2] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 49
+            [function] => get_records_sql
+            [class] => mysqli_native_moodle_database
+            [type] => ->
+            [args] => Array
+                (
+                    [0] => SELECT children.childrenid  as childrenid,
+                    children.parentid   as parentid,
+                    user.firstname      as firstname,
+                    user.lastname       as lastname,
+                    user.email          as email,
+                    user.phone1         as phone1,
+            FROM mdl_children_and_parent_information as children
+            JOIN mdl_user as user on user.id = children.childrenid
+            WHERE children.parentid = ?
+                    [1] => Array
+                        (
+                            [0] => 2
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-06-16 20:57:47] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 20:58:47] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 21:01:24] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 21:03:14] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
+[2025-06-16 21:06:50] Array
+(
+    [0] => Array
+        (
+            [file] => D:\MoodleWindowsInstallerLatest405\server\moodle\local\children_management\index.php
+            [line] => 63
+            [function] => get_string
+            [args] => Array
+                (
+                    [0] => registed course number
+                    [1] => local_children_management
+                )
+
+        )
+
+)
+
