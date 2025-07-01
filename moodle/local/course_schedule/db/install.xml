@@ -4,16 +4,16 @@
         <TABLE NAME="course_schedule" COMMENT="Course schedule per course">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="sectionid" TYPE="int" LENGTH="10" NOTNULL="true"/> <!-- Liên kết tới course_sections -->
-                <FIELD NAME="classdate" TYPE="char" LENGTH="10" NOTNULL="true" COMMENT="YYYY-MM-DD"/>
-                <FIELD NAME="classbegintime" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="HH:MM"/>
-                <FIELD NAME="classendtime" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="HH:MM"/>
-                <FIELD NAME="createtime" TYPE="int" LENGTH="10" NOTNULL="true"/>
-                <FIELD NAME="lastmodifytime" TYPE="int" LENGTH="10" NOTNULL="true"/>
-                <FIELD NAME="createuserid" TYPE="int" LENGTH="10" NOTNULL="true"/> <!-- Người tạo -->
-                <FIELD NAME="modifyuserid" TYPE="int" LENGTH="10" NOTNULL="true"/> <!-- Người sửa cuối -->
-                <FIELD NAME="ismakeup" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" COMMENT="1: makeup, 0: normal"/>
-                <FIELD NAME="iscancel" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" COMMENT="1: cancel, 0: normal"/>
+                <FIELD NAME="sectionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới course_sections -->
+                <FIELD NAME="classdate" TYPE="char" LENGTH="10" NOTNULL="true" COMMENT="YYYY-MM-DD" SEQUENCE="false"/>
+                <FIELD NAME="classbegintime" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="HH:MM" SEQUENCE="false"/>
+                <FIELD NAME="classendtime" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="HH:MM" SEQUENCE="false"/>
+                <FIELD NAME="createtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="lastmodifytime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="createuserid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Người tạo -->
+                <FIELD NAME="modifyuserid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Người sửa cuối -->
+                <FIELD NAME="ismakeup" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" COMMENT="1: makeup, 0: normal" SEQUENCE="false"/>
+                <FIELD NAME="iscancel" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" COMMENT="1: cancel, 0: normal" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
