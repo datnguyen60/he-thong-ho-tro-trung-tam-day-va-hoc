@@ -27,7 +27,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 require_once($CFG->dirroot . '/calendar/lib.php');
-require_once($CFG->dirroot . '/local/dlog/lib.php');
+
 use core_calendar\local\api as local_api;
 use core_calendar\local\event\container as event_container;
 use core_calendar\local\event\forms\create as create_event_form;
@@ -810,7 +810,6 @@ class core_calendar_external extends external_api {
      * @return array Array of event details
      */
     public static function get_calendar_event_by_id($eventid) {
-        dlog("hello world");
         global $PAGE, $USER;
 
         $params = self::validate_parameters(self::get_calendar_event_by_id_parameters(), ['eventid' => $eventid]);

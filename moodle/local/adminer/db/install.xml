@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <XMLDB PATH="local/adminer/db" VERSION="20250621" COMMENT="XMLDB file for Moodle local/adminer">
+    <TABLES>
+      <TABLE NAME="local_adminer" COMMENT="Default comment for local_adminer, please edit me">
+        <FIELDS>
+          <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" />
+        </FIELDS>
+        <KEYS>
+          <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+        </KEYS>
+      </TABLE>
+    </TABLES>
+  </XMLDB>

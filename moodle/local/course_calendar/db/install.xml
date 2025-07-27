@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/course_calendar/db" VERSION="20250606" COMMENT="XMLDB file for Moodle local/course_calendar"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+  <TABLES>
+    <TABLE NAME="local_course_calendar_total_course_lesson" COMMENT="Total course lesson for each course">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+            <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            <FIELD NAME="total_course_section" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            <FIELD NAME="total_course_lesson" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            <FIELD NAME="total_course_chapter" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            <FIELD NAME="created_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modified_user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="createtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="lastmodifytime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            <KEY NAME="course_fk" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+            <KEY NAME="created_user_fk" TYPE="foreign" FIELDS="created_user_id" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="modified_user_fk" TYPE="foreign" FIELDS="modified_user_id" REFTABLE="user" REFFIELDS="id"/>
+        </KEYS>
+        <INDEXES>
+            <INDEX NAME="courseid_idx" UNIQUE="false" FIELDS="courseid"/>
+            <INDEX NAME="created_user_id_idx" UNIQUE="false" FIELDS="created_user_id"/>
+            <INDEX NAME="modified_user_id_idx" UNIQUE="false" FIELDS="modified_user_id"/>
+        </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_course_calendar_course_section" COMMENT="Save course sections for each course">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+            <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            <FIELD NAME="created_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modified_user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="course_room_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="course_schedule_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="createdtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modifiedtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="visible" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/> <!-- Liên kết tới user -->
+            
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            <KEY NAME="course_fk" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+            <KEY NAME="created_user_fk" TYPE="foreign" FIELDS="created_user_id" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="modified_user_fk" TYPE="foreign" FIELDS="modified_user_id" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="course_room_fk" TYPE="foreign" FIELDS="course_room_id" REFTABLE="local_course_calendar_course_room" REFFIELDS="id"/>
+            <KEY NAME="course_schedule_fk" TYPE="foreign" FIELDS="course_schedule_id" REFTABLE="local_course_calendar_course_schedule" REFFIELDS="id"/>
+        </KEYS>
+        <INDEXES>
+            <INDEX NAME="courseid_idx" UNIQUE="false" FIELDS="courseid"/>
+            <INDEX NAME="created_user_id_idx" UNIQUE="false" FIELDS="created_user_id"/>
+            <INDEX NAME="modified_user_id_idx" UNIQUE="false" FIELDS="modified_user_id"/>
+            <INDEX NAME="course_room_id_idx" UNIQUE="false" FIELDS="course_room_id"/>
+            <INDEX NAME="course_schedule_id" UNIQUE="false" FIELDS="course_schedule_id"/>
+        </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_course_calendar_course_room" COMMENT="Save course room for each course section">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+            <FIELD NAME="room_number" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="room_floor" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="room_building" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="ward_address" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="district_address" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="province_address" TYPE="char" LENGTH="30" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="room_online_url" TYPE="char" LENGTH="1024" NOTNULL="false" SEQUENCE="false"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        </KEYS>
+    </TABLE>
+    <TABLE NAME="local_course_calendar_course_schedule" COMMENT="Save course schedule for each course section">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+            <FIELD NAME="created_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modified_user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="createdtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modifiedtime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="class_begin_time" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="class_end_time" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="class_total_sessions" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="reason" TYPE="char" LENGTH="1024" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="is_cancel" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="is_makeup" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="is_accepted" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            <KEY NAME="created_user_fk" TYPE="foreign" FIELDS="created_user_id" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="modified_user_fk" TYPE="foreign" FIELDS="modified_user_id" REFTABLE="user" REFFIELDS="id"/>
+        </KEYS>
+        <INDEXES>
+            <INDEX NAME="created_user_id_idx" UNIQUE="false" FIELDS="created_user_id"/>
+            <INDEX NAME="modified_user_id_idx" UNIQUE="false" FIELDS="modified_user_id"/>
+        </INDEXES>
+    </TABLE>
+    <TABLE NAME="local_course_calendar_holiday" COMMENT="Save holiday of central">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+            <FIELD NAME="created_user_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modified_user_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="createdtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="modifiedtime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="holiday" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            <KEY NAME="created_user_fk" TYPE="foreign" FIELDS="created_user_id" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="modified_user_fk" TYPE="foreign" FIELDS="modified_user_id" REFTABLE="user" REFFIELDS="id"/>
+        </KEYS>
+        <INDEXES>
+            <INDEX NAME="created_user_id_idx" UNIQUE="false" FIELDS="created_user_id"/>
+            <INDEX NAME="modified_user_id_idx" UNIQUE="false" FIELDS="modified_user_id"/>
+            <INDEX NAME="holiday_idx" UNIQUE="true" FIELDS="holiday"/>
+        </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

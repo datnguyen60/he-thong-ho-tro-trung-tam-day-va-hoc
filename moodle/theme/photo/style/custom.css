@@ -1,5 +1,0 @@
-.pagelayout-standard #page.drawers .main-inner,
-body.limitedwidth #page.drawers .main-inner {
-    max-width: none !important;
-    width: 100% !important; /* hoặc 100%, tùy bạn */
-}

@@ -1,0 +1,10 @@
+.rounded-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.otp-input-width {
+  width: 100px;
+  max-width: 150px;
+}
