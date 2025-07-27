@@ -156,7 +156,7 @@ function xmldb_local_course_calendar_upgrade($oldversion): bool
         upgrade_plugin_savepoint(true, 20250606017, 'local', 'course_calendar');
     }
 
-    if ($oldversion < 2025072701) {
+    if ($oldversion < 2025072702) {
         // Define table local_course_calendar_absence_request to be created.
         $table = new xmldb_table('local_course_calendar_absence_request');
 
