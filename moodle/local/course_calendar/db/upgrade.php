@@ -157,19 +157,32 @@ function xmldb_local_course_calendar_upgrade($oldversion): bool
     }
 
     if ($oldversion < 2025072701) {
+        // Define table local_course_calendar_absence_request to be created.
+        $table = new xmldb_table('local_course_calendar_absence_request');
 
-        // Define table.
-        $table = new xmldb_table('local_course_calendar_course_section');
+        // Define fields.
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('course_section_id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('teacher_id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('reason', XMLDB_TYPE_CHAR, '1024', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('created_by_manager', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('approver_id', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
+        $table->add_field('createdtime', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('modifiedtime', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
 
-        // Define field to change.
-        $field = new xmldb_field('createdtime', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, false, '0', 'sectionname');
+        // Define keys.
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+        $table->add_key('section_fk', XMLDB_KEY_FOREIGN, ['course_section_id'], 'local_course_calendar_course_section', ['id']);
+        $table->add_key('teacher_fk', XMLDB_KEY_FOREIGN, ['teacher_id'], 'user', ['id']);
+        $table->add_key('approver_fk', XMLDB_KEY_FOREIGN, ['approver_id'], 'user', ['id']);
 
-        // Apply the change if the field exists.
-        if ($dbman->field_exists($table, $field)) {
-            $dbman->change_field_type($table, $field);
+        // Create table if not exists.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
         }
 
-        // Savepoint.
+        // Save upgrade point.
         upgrade_plugin_savepoint(true, 2025072701, 'local', 'course_calendar');
     }
     // Everything has succeeded to here. Return true.
