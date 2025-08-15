@@ -1,0 +1,87 @@
+[2025-08-01 19:25:58] Array
+(
+    [0] => Array
+        (
+            [file] => /bitnami/moodle/lib/classes/param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+        )
+
+    [1] => Array
+        (
+            [file] => /bitnami/moodle/lib/moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+        )
+
+    [2] => Array
+        (
+            [file] => /bitnami/moodle/local/course_calendar/edit_course_calendar_step_2.php
+            [line] => 40
+            [function] => required_param
+        )
+
+)
+
+[2025-08-01 21:19:40] Array
+(
+    [0] => Array
+        (
+            [file] => /bitnami/moodle/lib/classes/param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+        )
+
+    [1] => Array
+        (
+            [file] => /bitnami/moodle/lib/moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+        )
+
+    [2] => Array
+        (
+            [file] => /bitnami/moodle/local/course_calendar/edit_course_calendar_step_2.php
+            [line] => 40
+            [function] => required_param
+        )
+
+)
+
+[2025-08-01 21:27:13] Array
+(
+    [0] => Array
+        (
+            [file] => /bitnami/moodle/lib/classes/param.php
+            [line] => 452
+            [function] => get_request_parameter
+            [class] => core\param
+            [type] => ->
+        )
+
+    [1] => Array
+        (
+            [file] => /bitnami/moodle/lib/moodlelib.php
+            [line] => 646
+            [function] => required_param
+            [class] => core\param
+            [type] => ->
+        )
+
+    [2] => Array
+        (
+            [file] => /bitnami/moodle/local/course_calendar/edit_course_calendar_step_2.php
+            [line] => 40
+            [function] => required_param
+        )
+
+)
+

@@ -29,6 +29,11 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 $CFG->dataroot  = '/bitnami/moodledata';
 $CFG->admin     = 'admin';
 
+@error_reporting(E_ALL | E_STRICT); // NOT FOR PRODUCTION!
+@ini_set('display_errors', '1');   // NOT FOR PRODUCTION!
+$CFG->debug = (E_ALL | E_STRICT);  // DEBUG_DEVELOPER
+$CFG->debugdisplay = 1;
+
 $CFG->directorypermissions = 02775;
 
 require_once(__DIR__ . '/lib/setup.php');

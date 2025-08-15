@@ -3381,3 +3381,100 @@ class TimetableGenerator
     return $time_table;
   }
 }
+
+/**
+ * Extend user settings navigation to add absence requests link
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param stdClass $user The user object
+ * @param context_user $usercontext The user context
+ * @param stdClass $course The course object
+ * @param context_course $coursecontext The course context
+ */
+function local_course_calendar_extend_navigation_user_settings($navigation, $user, $usercontext, $course, $coursecontext) {
+    global $USER;
+    
+    error_log('DEBUG: extend_navigation_user_settings called for user ' . $user->id);
+    
+    // Chỉ hiển thị cho user hiện tại
+    if ($USER->id == $user->id && isloggedin() && !isguestuser()) {
+        // Tạo category riêng cho Course Calendar
+        $categorynode = navigation_node::create(
+            get_string('pluginname', 'local_course_calendar'), // "Course Calendar Management"
+            null,
+            navigation_node::TYPE_CONTAINER,
+            null,
+            'coursecalendar_category',
+            new pix_icon('i/calendar', get_string('pluginname', 'local_course_calendar'))
+        );
+        
+        // Thêm link My Absence Requests vào category này
+        $url = new moodle_url('/local/course_calendar/pages/my_absence_requests.php');
+        $absencenode = navigation_node::create(
+            get_string('my_absence_requests', 'local_course_calendar'),
+            $url,
+            navigation_node::TYPE_SETTING,
+            null,
+            'myabsencerequests_settings',
+            new pix_icon('i/report', get_string('my_absence_requests', 'local_course_calendar'))
+        );
+        
+        // Thêm link Add Absence Request
+        $add_url = new moodle_url('/local/course_calendar/pages/add_absence_request.php');
+        $addnode = navigation_node::create(
+            'Add Absence Request',
+            $add_url,
+            navigation_node::TYPE_SETTING,
+            null,
+            'addabsencerequest_settings',
+            new pix_icon('i/withsubcat', 'Add Absence Request')
+        );
+        
+        // Thêm link My Makeup Requests
+        $makeup_url = new moodle_url('/local/course_calendar/pages/my_makeup_requests.php');
+        $makeupnode = navigation_node::create(
+            'My Makeup Requests',
+            $makeup_url,
+            navigation_node::TYPE_SETTING,
+            null,
+            'mymakeuprequests_settings',
+            new pix_icon('i/completion-auto-pass', 'My Makeup Requests')
+        );
+        
+        // Thêm link Manage Absence Requests cho manager
+        $manage_url = new moodle_url('/local/course_calendar/pages/manage_absence_requests.php');
+        $managenode = navigation_node::create(
+            'Manage Absence Requests',
+            $manage_url,
+            navigation_node::TYPE_SETTING,
+            null,
+            'manageabsencerequests_settings',
+            new pix_icon('i/settings', 'Manage Absence Requests')
+        );
+        
+        // Thêm link Manage Makeup Requests cho manager
+        $manage_makeup_url = new moodle_url('/local/course_calendar/pages/manage_makeup_requests.php');
+        $managemakeupnode = navigation_node::create(
+            'Manage Makeup Requests',
+            $manage_makeup_url,
+            navigation_node::TYPE_SETTING,
+            null,
+            'managemakeuprequests_settings',
+            new pix_icon('i/permissions', 'Manage Makeup Requests')
+        );
+        
+        // Thêm links vào category
+        $categorynode->add_node($absencenode);
+        $categorynode->add_node($addnode);
+        $categorynode->add_node($makeupnode);
+        $categorynode->add_node($managenode);
+        $categorynode->add_node($managemakeupnode);
+        
+        // Thêm category vào navigation
+        if ($navigation instanceof navigation_node) {
+            $navigation->add_node($categorynode);
+            error_log('DEBUG: Course Calendar category and absence requests added successfully');
+        }
+    }
+}
+

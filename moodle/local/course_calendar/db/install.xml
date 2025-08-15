@@ -117,5 +117,27 @@
             <INDEX NAME="holiday_idx" UNIQUE="true" FIELDS="holiday"/>
         </INDEXES>
     </TABLE>
+    <TABLE NAME="local_course_calendar_absence_request" COMMENT="Absence requests from teachers">
+        <FIELDS>
+            <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+            <FIELD NAME="teacher_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="course_section_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="reason" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+            <FIELD NAME="approver_id" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+            <FIELD NAME="createdtime" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+            <FIELD NAME="approvedtime" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
+        </FIELDS>
+        <KEYS>
+            <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            <KEY NAME="teacher_fk" TYPE="foreign" FIELDS="teacher_id" REFTABLE="user" REFFIELDS="id"/>
+            <KEY NAME="course_section_fk" TYPE="foreign" FIELDS="course_section_id" REFTABLE="local_course_calendar_course_section" REFFIELDS="id"/>
+            <KEY NAME="approver_fk" TYPE="foreign" FIELDS="approver_id" REFTABLE="user" REFFIELDS="id"/>
+        </KEYS>
+        <INDEXES>
+            <INDEX NAME="status_idx" UNIQUE="false" FIELDS="status"/>
+            <INDEX NAME="createdtime_idx" UNIQUE="false" FIELDS="createdtime"/>
+        </INDEXES>
+    </TABLE>
   </TABLES>
 </XMLDB>

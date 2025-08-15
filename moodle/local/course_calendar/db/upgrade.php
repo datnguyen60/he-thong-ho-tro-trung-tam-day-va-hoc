@@ -185,6 +185,194 @@ function xmldb_local_course_calendar_upgrade($oldversion): bool
         // Save upgrade point.
         upgrade_plugin_savepoint(true, 2025072701, 'local', 'course_calendar');
     }
+
+    if ($oldversion < 20250730002) {
+        
+        // Define table local_course_calendar_absence_request to be created.
+        $table = new xmldb_table('local_course_calendar_absence_request');
+
+        // Adding fields to table local_course_calendar_absence_request.
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('teacher_id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('course_section_id', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
+        $table->add_field('reason', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null);
+        $table->add_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('approver_id', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
+        $table->add_field('createdtime', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('approvedtime', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
+
+        // Adding keys to table local_course_calendar_absence_request.
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+        $table->add_key('teacher_fk', XMLDB_KEY_FOREIGN, ['teacher_id'], 'user', ['id']);
+        // Note: course_section table may not exist, so we'll skip this foreign key for now
+        // $table->add_key('course_section_fk', XMLDB_KEY_FOREIGN, ['course_section_id'], 'local_course_calendar_course_section', ['id']);
+        $table->add_key('approver_fk', XMLDB_KEY_FOREIGN, ['approver_id'], 'user', ['id']);
+
+        // Adding indexes to table local_course_calendar_absence_request.
+        // Note: No need for teacher_id_idx since teacher_fk foreign key already creates an index
+        $table->add_index('status_idx', XMLDB_INDEX_NOTUNIQUE, ['status']);
+        $table->add_index('createdtime_idx', XMLDB_INDEX_NOTUNIQUE, ['createdtime']);
+
+        // Conditionally launch create table for local_course_calendar_absence_request.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // course_calendar savepoint reached.
+        upgrade_plugin_savepoint(true, 20250730002, 'local', 'course_calendar');
+    }
+
+    if ($oldversion < 20250802001) {
+        // Add fields to local_course_calendar_absence_request for makeup session support
+        $table = new xmldb_table('local_course_calendar_absence_request');
+        
+        // Add request_type field (0 = absence, 1 = makeup) with constraint
+        $field = new xmldb_field('request_type', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0', 'status');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+            
+            // Add check constraint to ensure request_type is 0 or 1
+            // Note: This will be enforced at application level in Moodle
+        }
+        
+        // Add original_absence_id for makeup requests (only for request_type = 1)
+        $field = new xmldb_field('original_absence_id', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'request_type');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        
+        // Add makeup_room_id for makeup sessions (only for request_type = 1)
+        $field = new xmldb_field('makeup_room_id', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'original_absence_id');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        
+        // Add makeup_date for makeup sessions (only for request_type = 1)
+        $field = new xmldb_field('makeup_date', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'makeup_room_id');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        
+        // Add makeup_start_time for makeup sessions (only for request_type = 1)
+        $field = new xmldb_field('makeup_start_time', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'makeup_date');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        
+        // Add makeup_end_time for makeup sessions (only for request_type = 1)
+        $field = new xmldb_field('makeup_end_time', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'makeup_start_time');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Add foreign keys with proper error handling
+        try {
+            // Add foreign key for original_absence_id (self-referencing)
+            $key = new xmldb_key('original_absence_fk', XMLDB_KEY_FOREIGN, ['original_absence_id'], 'local_course_calendar_absence_request', ['id']);
+            if (!$dbman->find_key_name($table, $key)) {
+                $dbman->add_key($table, $key);
+            }
+        } catch (Exception $e) {
+            // Log error but continue - foreign key can be added later
+            error_log('Could not add original_absence_fk: ' . $e->getMessage());
+        }
+        
+        try {
+            // Add foreign key for makeup_room_id  
+            $key = new xmldb_key('makeup_room_fk', XMLDB_KEY_FOREIGN, ['makeup_room_id'], 'local_course_calendar_course_room', ['id']);
+            if (!$dbman->find_key_name($table, $key)) {
+                $dbman->add_key($table, $key);
+            }
+        } catch (Exception $e) {
+            // Log error but continue - foreign key can be added later
+            error_log('Could not add makeup_room_fk: ' . $e->getMessage());
+        }
+
+        // Add indexes for better performance
+        $index = new xmldb_index('request_type_idx', XMLDB_INDEX_NOTUNIQUE, ['request_type']);
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+        
+        $index = new xmldb_index('original_absence_idx', XMLDB_INDEX_NOTUNIQUE, ['original_absence_id']);
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+
+        // course_calendar savepoint reached.
+        upgrade_plugin_savepoint(true, 20250802001, 'local', 'course_calendar');
+    }
+
+    if ($oldversion < 20250606018) {
+
+        // Define field class_begin_time to be added to local_course_calendar_course_schedule.
+        $table = new xmldb_table('local_course_calendar_course_section');
+        // ban đầu nếu không có ai dạy thì là người admin. Hiện tại admin có id = 2. Nhưng để đảm bảo thì lần đầu nếu không có dữ liệu thì nó là 0  để biết đây là lỗi dữ liệu
+        $field = new xmldb_field(
+            'editing_teacher_primary_teacher',
+            XMLDB_TYPE_INTEGER,
+            '10',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            0,
+        );
+
+        // Conditionally launch add field class_begin_time.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        $field = new xmldb_field(
+            'non_editing_teacher_secondary_teacher',
+            XMLDB_TYPE_INTEGER,
+            '10',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            0
+        );
+
+        // Conditionally launch add field class_begin_time.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Course_calendar savepoint reached.
+        upgrade_plugin_savepoint(true, 20250606018, 'local', 'course_calendar');
+
+    }
+
+    if ($oldversion < 20250606019) {
+
+        // Define key created_user_fk (foreign) to be added to local_course_calendar_course_section.
+        $table = new xmldb_table('local_course_calendar_course_section');
+        $key = new xmldb_key('editing_teacher_primary_teacher', XMLDB_KEY_FOREIGN, ['editing_teacher_primary_teacher'], 'user', ['id']);
+
+        // Launch add key created_user_fk.
+        $dbman->add_key($table, $key);
+
+        $key = new xmldb_key('non_editing_teacher_secondary_teacher', XMLDB_KEY_FOREIGN, ['non_editing_teacher_secondary_teacher'], 'user', ['id']);
+
+        // Launch add key created_user_fk.
+        $dbman->add_key($table, $key);
+
+        $index = new xmldb_index('editing_teacher_primary_teacher_idx', XMLDB_INDEX_NOTUNIQUE, ['editing_teacher_primary_teacher']);
+
+        // Conditionally launch add index created_user_id_idx.
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+        $index = new xmldb_index('non_editing_teacher_secondary_teacher_idx', XMLDB_INDEX_NOTUNIQUE, ['non_editing_teacher_secondary_teacher']);
+
+        // Conditionally launch add index created_user_id_idx.
+        if (!$dbman->index_exists($table, $index)) {
+            $dbman->add_index($table, $index);
+        }
+        // Course_calendar savepoint reached.
+        upgrade_plugin_savepoint(true, 20250606019, 'local', 'course_calendar');
+    }
+
     // Everything has succeeded to here. Return true.
     return true;
 }
